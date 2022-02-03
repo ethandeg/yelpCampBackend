@@ -1,4 +1,5 @@
 <?php
+require_once PROJECT_ROOT_PATH . "/inc/sqlFunctions.php";
 class Database
 {
     protected $connection = null;
@@ -30,17 +31,34 @@ class Database
         return false;
     }
 
+    public function insert($query = "", $params = []){
+        //like above function, but make for an insert
+        try {
+            // echo $query;
+            // print_r($params);
+            // exit;
+            $stmt = $this->executeStatement($query, $params);
+            $stmt->close();
+        } catch (Exception $e){
+            throw New Exception($e->getMessage());
+        }
+        return false;
+    }
+
     private function executeStatement($query = "" , $params = [])
     {
         try {
             $stmt = $this->connection->prepare( $query );
-
             if($stmt === false) {
+                die("prepare failed (" . $this->connection->errno . ")" . " " . $this->connection->error . "Query: " . $query);
                 throw New Exception("Unable to do prepared statement: " . $query);
             }
 
             if( $params ) {
-                $stmt->bind_param($params[0], $params[1]);
+                ///should be
+                // [0], [1...]
+                $values = array_slice($params,1);
+                $stmt->bind_param($params[0], ...$values);
             }
 
             $stmt->execute();

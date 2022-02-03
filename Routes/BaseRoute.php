@@ -1,4 +1,4 @@
-<?
+<?php
 class BaseRoute {
     public function __call($name, $arguments)
     {
@@ -23,6 +23,26 @@ class BaseRoute {
     protected function getQueryStringParams()
     {
         return parse_str($_SERVER['QUERY_STRING'], $query);
+    }
+    /**
+     * Get path relative from the str passed in.
+     * 
+     * @return string
+     */
+    protected function getPath($str){
+        $path = $this->getUriSegments();
+        $path = explode('/', $path);
+        $val = array_search($str, $path);
+        $path = array_splice($path, $val +1);
+        if(!count($path)) {
+            $path = ['/'];
+        }
+        $path = join("/", $path);
+        if($path[0] != "/"){
+            $path = "/" . $path;
+        }
+
+        return $path;
     }
 
 }

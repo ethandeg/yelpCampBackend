@@ -7,4 +7,6 @@ $db['db_database_name'] = 'yelpcamp';
 foreach($db as $key => $value){
     define(strtoupper($key), $value);
 }
+
+ini_set('short_open_tag', "On");
 ?>
