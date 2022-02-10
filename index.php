@@ -10,6 +10,10 @@ switch($path[1]){
         $user = new UserRoute();
         $user->callFunc();
         break;
+    case 'camp':
+        require_once PROJECT_ROOT_PATH . "/Routes/CampRoute.php";
+        $camp = new CampRoute();
+        $camp->callFunc();
     default:
         echo "default route";
         $objFeedController = new UserController();
