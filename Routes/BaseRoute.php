@@ -45,5 +45,13 @@ class BaseRoute {
         return $path;
     }
 
+    protected function grabHeaders(){
+        $headers=array();
+        foreach (getallheaders() as $name => $value) {
+            $headers[$name] = $value;
+        }
+        return $headers;
+    }
+
 }
 ?>

@@ -7,6 +7,7 @@ class UserController extends BaseController
     /**
      * "/user/list" Endpoint - Get list of users
      */
+
     public function listAction(){
         //put error handling stuff as a next function that is called, that gives error info if error, to clean up the functions
         $strErrorDesc = '';

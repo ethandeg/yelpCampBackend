@@ -38,6 +38,10 @@ class BaseController
      * @param mixed  $data
      * @param string $httpHeader
      */
+
+
+
+
     protected function sendOutput($data, $httpHeaders=array())
     {
         header_remove('Set-Cookie');

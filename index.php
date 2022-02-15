@@ -15,8 +15,8 @@ switch($path[1]){
         $camp = new CampRoute();
         $camp->callFunc();
     default:
-        echo "default route";
-        $objFeedController = new UserController();
+        header("HTTP/1.1 404 Not Found");
+        exit();
 }
 // if ((isset($uri[4]) && $uri[4] != 'user') || !isset($uri[4])) {
 //     header("HTTP/1.1 404 Not Found");

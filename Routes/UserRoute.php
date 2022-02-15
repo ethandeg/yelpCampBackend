@@ -29,10 +29,10 @@ class UserRoute extends BaseRoute {
             case ($path === "/token"):
                 $data = json_decode(file_get_contents('php://input'), true);
                 $userCon->login($data);
-                break;            
+                break;
+
             default:
-                echo "hit default";
-                echo $path . " " . $requestMethod;
+                $userCon->__call(null,null);
         }
     }
 }
